@@ -75,20 +75,21 @@ export const initMotion = () => {
     }
   });
 
+  // Whole sequence is deliberately under 2.2s, including the wipe.
   intro
     .to(state, {
       value: 100,
-      duration: 1.45,
+      duration: 1.0,
       ease: 'power2.inOut',
       onUpdate: setCount
     })
-    .to(bar, { scaleX: 1, duration: 1.45, ease: 'power2.inOut' }, 0)
-    .to(counter ? [counter] : [], { yPercent: -18, opacity: 0, duration: 0.4, ease: 'power2.in' }, 1.45)
+    .to(bar, { scaleX: 1, duration: 1.0, ease: 'power2.inOut' }, 0)
+    .to(counter ? [counter] : [], { yPercent: -18, opacity: 0, duration: 0.3, ease: 'power2.in' }, 1.0)
     .to(preloader, {
       clipPath: 'inset(0% 0% 100% 0%)',
-      duration: 0.62,
+      duration: 0.5,
       ease: 'power3.inOut'
-    });
+    }, 1.05);
 
   if (preloader) {
     preloader.style.clipPath = 'inset(0% 0% 0% 0%)';
@@ -208,28 +209,35 @@ export const initMotion = () => {
       scrollTrigger: {
         trigger: run,
         start: 'top top',
-        end: () => `+=${window.innerHeight * 1.5}`,
+        end: () => `+=${window.innerHeight * 2}`,
         scrub: true,
         invalidateOnRefresh: true
       }
     });
   }
 
-  /* ---------------- Theme flips: scrubbed background + ink ---------------- */
+  /* ---------------- Theme flips ---------------- */
+  // Exactly two wrapper groups, each with the reference's 12% insets:
+  // group A scrubs dark -> light, group B scrubs light -> dark, so the seam
+  // between them is the chapter change and the contact section lands dark.
+  //
+  // One deliberate deviation: every chapter paints its own flat colour. A
+  // scrub over a 7,000px group otherwise parks rgb(81,81,81) behind the hero —
+  // a grey smear through the middle of a chapter instead of an edge. With the
+  // chapters opaque, the scrubbed group colour is only ever seen at the seam,
+  // which is exactly where a flip belongs.
   groups.forEach((group) => {
     const isLight = group.classList.contains('group--light');
     const from = isLight ? '#F1F1F1' : '#161616';
     const to = isLight ? '#161616' : '#F1F1F1';
-    const inkFrom = isLight ? '#161616' : '#F1F1F1';
-    const inkTo = isLight ? '#F1F1F1' : '#161616';
 
     gsap.fromTo(
       group,
-      { backgroundColor: from, color: inkFrom },
+      { backgroundColor: from },
       {
         backgroundColor: to,
-        color: inkTo,
         ease: 'none',
+        immediateRender: false,
         scrollTrigger: {
           trigger: group,
           start: 'top 12%',

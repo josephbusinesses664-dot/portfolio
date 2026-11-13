@@ -21,17 +21,18 @@ import Contact from '../components/Contact.astro';
     <div class="cursor" data-cursor-ring hidden></div>
     <div class="cursor-dot" data-cursor-dot hidden></div>
 
-    <!-- Group A: opens dark, scrubbed to light as the first chapter passes. -->
+    <!-- Group A: the dark opening chapter. Scrubbed dark -> light. -->
     <div class="group" data-group="a">
       <div class="hero-spacer" aria-hidden="true"></div>
       <Hero />
       <Marquee />
       <Statement />
-      <Work />
     </div>
 
-    <!-- Group B: the playground and contact, flipped back by scrub. -->
+    <!-- Group B: everything after the introduction, on paper. The seam above
+         this element is the chapter change; group B scrubs off-white -> white. -->
     <div class="group group--light" data-group="b">
+      <Work />
       <Playground />
       <Contact />
     </div>

@@ -140,6 +140,8 @@
 
 /* ---------- Hero ---------- */
 .hero {
+  background: var(--dark);
+  color: var(--light);
   position: sticky;
   top: 0;
   height: 100svh;
@@ -168,10 +170,10 @@
 .hero__name {
   font-size: var(--h1);
   font-weight: 400;
-  line-height: 0.86;
-  letter-spacing: -0.045em;
+  line-height: 0.82;
+  letter-spacing: -0.05em;
   margin: 0;
-  text-wrap: balance;
+  text-wrap: nowrap;
 }
 
 .hero__name .mask {
@@ -221,6 +223,8 @@
 
 /* ---------- Marquee ---------- */
 .marquee {
+  background: var(--dark);
+  color: var(--light);
   position: relative;
   z-index: 2;
   overflow: clip;
@@ -264,6 +268,8 @@
 
 /* ---------- Statement ---------- */
 .statement {
+  background: var(--dark);
+  color: var(--light);
   position: relative;
   z-index: 2;
   padding: clamp(5rem, 15vh, 10rem) var(--gutter) clamp(4rem, 10vh, 7rem);
@@ -319,6 +325,8 @@
 
 /* ---------- Work ---------- */
 .work {
+  background: #f1f1f1;
+  color: #161616;
   position: relative;
   z-index: 2;
   padding-bottom: clamp(2rem, 6vh, 4rem);
@@ -485,6 +493,8 @@
 
 /* ---------- Aside list ---------- */
 .asides {
+  background: #f1f1f1;
+  color: #161616;
   position: relative;
   z-index: 2;
   padding: clamp(3.5rem, 9vh, 6rem) var(--gutter) clamp(4rem, 10vh, 7rem);
@@ -553,6 +563,8 @@
 
 /* ---------- Playground ---------- */
 .play {
+  background: #161616;
+  color: #f1f1f1;
   position: relative;
   z-index: 2;
 }
@@ -617,6 +629,7 @@
   color: #fff;
   pointer-events: none;
   mix-blend-mode: difference;
+  opacity: 0.75;
 }
 
 .rail {
@@ -635,22 +648,20 @@
 }
 
 .snippet {
-  width: min(78vw, 25rem);
+  width: min(82vw, 38rem);
   flex: 0 0 auto;
   display: grid;
   gap: 0.6rem;
   padding: 1.2rem 1.3rem 1.35rem;
-  border: 1px solid rgba(241, 241, 241, 0.2);
-  background: rgba(22, 22, 22, 0.72);
-  backdrop-filter: none;
+  border: 1px solid color-mix(in oklab, currentColor 22%, transparent);
+  background: color-mix(in oklab, currentColor 5%, transparent);
   align-content: start;
-  color: var(--light);
 }
 
 .snippet__idx {
   font-family: var(--mono);
   font-size: 11px;
-  color: rgba(241, 241, 241, 0.5);
+  color: color-mix(in oklab, currentColor 52%, transparent);
 }
 
 .snippet__title {
@@ -663,7 +674,7 @@
   font-family: var(--mono);
   font-size: 12px;
   line-height: 1.62;
-  color: rgba(241, 241, 241, 0.78);
+  color: color-mix(in oklab, currentColor 78%, transparent);
   white-space: pre;
   margin: 0;
   overflow-x: auto;
@@ -673,11 +684,13 @@
 .snippet__note {
   font-size: 0.82rem;
   line-height: 1.5;
-  color: rgba(241, 241, 241, 0.52);
+  color: color-mix(in oklab, currentColor 52%, transparent);
 }
 
 /* ---------- Contact ---------- */
 .contact {
+  background: #161616;
+  color: #f1f1f1;
   position: relative;
   z-index: 2;
   padding: clamp(6rem, 18vh, 12rem) var(--gutter) 0;
@@ -869,15 +882,16 @@
   position: absolute;
   left: var(--gutter);
   right: var(--gutter);
-  bottom: clamp(6.5rem, 17vh, 11rem);
-  z-index: -1;
+  top: clamp(5.2rem, 11vh, 7.5rem);
+  z-index: 0;
   pointer-events: auto;
 }
 
 .hero__prox-type {
-  font-size: clamp(2.4rem, 8.6vw, 8rem);
+  display: block;
+  font-size: clamp(1.55rem, 4.1vw, 3.4rem);
   line-height: 1;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.035em;
   font-weight: 400;
   white-space: nowrap;
 }

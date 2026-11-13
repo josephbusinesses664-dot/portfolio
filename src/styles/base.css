@@ -15,7 +15,9 @@
   --display: 'Archivo Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
 
-  --h1: clamp(2.9rem, 9.6vw, 10.2rem);
+  /* Sized so the longest line fills the measure at any width — the name
+     is the image, so it spans edge to edge rather than sitting small. */
+  --h1: clamp(2.6rem, 21.4vw, 21rem);
   --h2: clamp(2rem, 4.5vw, 3.6rem);
   --card-title: clamp(1.25rem, 1.85vw, 1.5rem);
   --ui: 0.8125rem;
