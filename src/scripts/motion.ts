@@ -152,20 +152,36 @@ export const initMotion = () => {
   }
 
   /* ---------------- Statement: word-by-word scrub ---------------- */
+  // The paragraph is server-rendered as plain text with its words already in
+  // spans, so it reads fully with JS off. SplitText re-splits it into words it
+  // owns, which keeps the markup simple and lets the scrub address each word.
   const statement = document.querySelector<HTMLElement>('[data-statement]');
   if (statement) {
-    const words = statement.querySelectorAll('.w');
-    gsap.set(words, { opacity: 0.12 });
-    gsap.to(words, {
-      opacity: 1,
-      ease: 'none',
-      stagger: 0.4,
-      scrollTrigger: {
-        trigger: statement,
-        start: 'top center',
-        end: 'bottom center',
-        scrub: true
+    // SplitText must wait for the faces, or it measures fallback metrics and
+    // the reflow shifts every word. Fall back to revealing the paragraph whole
+    // if the split is unavailable for any reason.
+    document.fonts.ready.then(() => {
+      let words: Element[] = [statement];
+      try {
+        const split = new SplitText(statement, { type: 'words', wordsClass: 'w' });
+        words = split.words.length ? split.words : [statement];
+      } catch {
+        words = [statement];
       }
+
+      gsap.set(words, { opacity: 0.12 });
+      gsap.to(words, {
+        opacity: 1,
+        ease: 'none',
+        stagger: 0.4,
+        scrollTrigger: {
+          trigger: statement,
+          start: 'top center',
+          end: 'bottom center',
+          scrub: true
+        }
+      });
+      ScrollTrigger.refresh();
     });
   }
 
@@ -207,6 +223,8 @@ export const initMotion = () => {
     };
     measure();
 
+    const counter = document.querySelector<HTMLElement>('[data-rail-count]');
+
     gsap.to(railTrack, {
       x: () => -distance(),
       ease: 'none',
@@ -215,7 +233,12 @@ export const initMotion = () => {
         start: 'top top',
         end: () => `+=${Math.max(distance(), 1)}`,
         scrub: true,
-        invalidateOnRefresh: true
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          if (!counter) return;
+          const n = Math.min(4, Math.floor(self.progress * 4) + 1);
+          counter.textContent = String(n).padStart(2, '0');
+        }
       }
     });
 
@@ -256,6 +279,17 @@ export const initMotion = () => {
   });
 
   /* ---------------- Contact ---------------- */
+  const invite = document.querySelector<HTMLElement>('[data-invite]');
+  if (invite) {
+    gsap.from(invite, {
+      opacity: 0,
+      y: 14,
+      duration: 0.6,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: invite, start: 'top 88%', once: true }
+    });
+  }
+
   const say = document.querySelector<HTMLElement>('.contact [data-mask-line]');
   if (say) {
     gsap.set(say, { yPercent: 108 });

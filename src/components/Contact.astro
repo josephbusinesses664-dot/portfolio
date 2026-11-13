@@ -1,4 +1,6 @@
 ---
+import ClickSpark from '../react/ClickSpark.jsx';
+
 const mail = 'hello@prem-ium.online';
 const year = new Date().getFullYear();
 ---
@@ -10,7 +12,26 @@ const year = new Date().getFullYear();
     <span class="mask"><span data-mask-line>Say hi</span></span>
   </h2>
 
-  <a class="contact__mail" href={`mailto:${mail}`} data-magnet data-cursor>{mail}</a>
+  <p class="contact__invite" data-invite>
+    If you're building something hard and want another pair of eyes, write.
+  </p>
+
+  <ClickSpark
+    client:visible
+    sparkColor="#F1F1F1"
+    sparkSize={12}
+    sparkRadius={26}
+    sparkCount={7}
+    sparkWidth={1.5}
+    duration={520}
+    easing="ease-out"
+    shape="line"
+    randomness={0.35}
+    gravity={0.15}
+    className="contact__spark"
+  >
+    <a class="contact__mail" href={`mailto:${mail}`} data-magnet data-cursor>{mail}</a>
+  </ClickSpark>
 
   <div class="contact__meta">
     <span>Local time <span data-clock>--:--:--</span> PT</span>

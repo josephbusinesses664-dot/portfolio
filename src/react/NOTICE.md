@@ -1,9 +1,10 @@
 # Third-party notice
 
-`BlurText.jsx`, `CountUp.jsx` and `VariableProximity.jsx` are adapted from
+`CountUp.jsx`, `ClickSpark.jsx` and `VariableProximity.jsx` are adapted from
 **React Bits** (https://reactbits.dev) by David Haz, used under the
 MIT + Commons Clause licence. Three of the five components the brief allows are
-in use; the other two were not needed.
+in use; `BlurText` and `PixelTrail` were tried and dropped — BlurText left half
+its words at opacity 0, and PixelTrail's container ignores pointer events.
 
 Changes made here:
 

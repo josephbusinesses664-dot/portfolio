@@ -1,8 +1,6 @@
 ---
-const words =
-  'Almost everything I know how to build is invisible. Storage that stays correct, agents that pause before they do something dumb, retrieval that can show its work. So this page shows the interfaces, and keeps the proof honest: four projects, two of them closed.'.split(
-    ' '
-  );
+const statement =
+  'Almost everything I know how to build is invisible. Storage that stays correct, agents that pause before they do something dumb, retrieval that can show its work. So this page shows the interfaces, and keeps the proof honest: four projects, two of them closed.';
 ---
 
 <section class="statement" id="about">
@@ -10,11 +8,7 @@ const words =
     <p class="statement__meta">01<br />Statement</p>
 
     <div>
-      <p class="statement__body" data-statement>
-        {words.map((word) => (
-          <span class="w">{word} </span>
-        ))}
-      </p>
+      <p class="statement__body" data-statement>{statement}</p>
       <span class="stasend">Not much here yet. Watch what I can do while I get there.</span>
     </div>
   </div>
