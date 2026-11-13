@@ -1,0 +1,6 @@
+/* Adapted from React Bits (MIT + Commons Clause). The upstream file loads
+   Roboto Flex from the Google Fonts CDN; that import is removed on purpose
+   so the whole site stays self-hosted. Archivo carries a real wght axis. */
+.variable-proximity {
+  font-family: var(--display);
+}

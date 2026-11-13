@@ -1,0 +1,20 @@
+---
+// Two identical runs make the loop seamless: the track always measures
+// two full copies, so a -50% translate lands exactly on the seam.
+const items = ['Design', 'Motion', 'Code', '3D', 'Systems', 'Type'];
+const run = [...items, ...items];
+---
+
+<section class="marquee" aria-hidden="true">
+  <div class="marquee__track" data-marquee>
+    {
+      [0, 1].map((copy) => (
+        <div class="marquee__run" data-marquee-run>
+          {run.map((item) => (
+            <span class="marquee__item">{item}</span>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+</section>

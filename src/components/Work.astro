@@ -1,0 +1,88 @@
+---
+import { projects, asides } from '../data/projects';
+---
+
+<section class="work" id="work">
+  <div class="work__head">
+    <h2 class="work__title">02 &nbsp;/&nbsp; Selected work</h2>
+    <p class="work__title">Four</p>
+  </div>
+
+  <div class="stack" data-stack>
+    {
+      projects.map((project, i) => (
+        <article
+          class={`card card--${i % 2 === 0 ? 'dark' : 'light'}`}
+          data-card
+          data-art={project.slug}
+        >
+          <div class="card__top">
+            <span>{project.index}</span>
+            <span>
+              {project.stack} / {project.isPrivate ? 'private repo' : 'public'}
+            </span>
+          </div>
+
+          <div class="card__body">
+            <div>
+              <h3 class="card__title">
+                <span class="mask">
+                  <span data-mask-line>{project.title}</span>
+                </span>
+              </h3>
+              <p class="card__one">{project.oneLiner}</p>
+            </div>
+            <div>
+              <p class="card__desc">{project.description}</p>
+              <div class="card__foot">
+                <p class="card__tags">
+                  {project.tags.map((tag) => (
+                    <span>{tag}</span>
+                  ))}
+                  <span>{project.scale}</span>
+                </p>
+                {project.repo ? (
+                  <a class="card__link" href={project.repo} target="_blank" rel="noopener noreferrer" data-cursor>
+                    {project.repoLabel} ↗
+                  </a>
+                ) : (
+                  <span class="card__link card__link--private">Private repo</span>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <figure class="card__media" data-media>
+            <canvas data-canvas={project.slug} aria-hidden="true" />
+            <figcaption class="card__media-tag">
+              {project.slug}.canvas
+            </figcaption>
+          </figure>
+        </article>
+      ))
+    }
+  </div>
+
+  <div class="asides">
+    <p class="asides__label">03 &nbsp;/&nbsp; Also out there</p>
+    <ul class="asides__list">
+      {
+        asides.map((aside) => (
+          <li class="asides__item">
+            <span class="asides__name">{aside.title}</span>
+            <span class="asides__note">{aside.note}</span>
+            <a
+              class="asides__label-link"
+              href={aside.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor
+            >
+              {aside.label} ↗
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

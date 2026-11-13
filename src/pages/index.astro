@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import Preloader from '../components/Preloader.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Marquee from '../components/Marquee.astro';
+import Statement from '../components/Statement.astro';
+import Work from '../components/Work.astro';
+import Playground from '../components/Playground.astro';
+import Contact from '../components/Contact.astro';
+---
+
+<Base
+  title="Prem Tamanam — AI systems, built early"
+  description="Prem Tamanam is a ninth grader in San Diego building memory, retrieval and agent systems. Four projects, two of them closed. The rest is still in progress."
+>
+  <Preloader />
+  <Nav />
+
+  <main>
+    <div class="cursor" data-cursor-ring hidden></div>
+    <div class="cursor-dot" data-cursor-dot hidden></div>
+
+    <!-- Group A: opens dark, scrubbed to light as the first chapter passes. -->
+    <div class="group" data-group="a">
+      <div class="hero-spacer" aria-hidden="true"></div>
+      <Hero />
+      <Marquee />
+      <Statement />
+      <Work />
+    </div>
+
+    <!-- Group B: the playground and contact, flipped back by scrub. -->
+    <div class="group group--light" data-group="b">
+      <Playground />
+      <Contact />
+    </div>
+  </main>
+
+  <script>
+    import '../scripts/art';
+    import '../scripts/motion';
+  </script>
+</Base>

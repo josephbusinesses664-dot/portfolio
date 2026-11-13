@@ -1,0 +1,21 @@
+---
+const mail = 'hello@prem-ium.online';
+const year = new Date().getFullYear();
+---
+
+<footer class="contact" id="contact">
+  <p class="contact__kicker">05 &nbsp;/&nbsp; Contact</p>
+
+  <h2 class="contact__say">
+    <span class="mask"><span data-mask-line>Say hi</span></span>
+  </h2>
+
+  <a class="contact__mail" href={`mailto:${mail}`} data-magnet data-cursor>{mail}</a>
+
+  <div class="contact__meta">
+    <span>Local time <span data-clock>--:--:--</span> PT</span>
+    <span>San Diego, California</span>
+    <a href="https://github.com/josephbusinesses664-dot" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    <span>{year}</span>
+  </div>
+</footer>

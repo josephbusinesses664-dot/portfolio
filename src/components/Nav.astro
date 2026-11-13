@@ -1,0 +1,27 @@
+---
+const mail = 'hello@prem-ium.online';
+---
+
+<header class="nav">
+  <a class="nav__mark" href="#top">Prem Tamanam</a>
+  <div class="nav__right">
+    <a class="pill" href={`mailto:${mail}`} data-magnet data-cursor>Get in touch</a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+      <span></span>
+      <span></span>
+      <span class="sr">Menu</span>
+    </button>
+  </div>
+</header>
+
+<nav class="menu" id="menu" hidden>
+  <div class="menu__inner">
+    <p class="menu__label">Sections</p>
+    <ul class="menu__list">
+      <li><a href="#work" data-menu-link>Work <span>04</span></a></li>
+      <li><a href="#play" data-menu-link>Playground <span>04</span></a></li>
+      <li><a href="#contact" data-menu-link>Contact <span>01</span></a></li>
+    </ul>
+    <p class="menu__foot">San Diego, California</p>
+  </div>
+</nav>

@@ -1,0 +1,43 @@
+---
+import VariableProximity from '../react/VariableProximity.jsx';
+
+const name = 'Prem Tamanam';
+---
+
+<section class="hero" id="top">
+  <div class="hero__inner">
+    <p class="hero__eyebrow">
+      <span>Portfolio, 2026</span>
+      <span>San Diego, CA</span>
+    </p>
+
+    <h1 class="hero__name">
+      <span class="mask"><span data-mask-line>Prem</span></span>
+      <span class="mask"><span data-mask-line>Tamanam</span></span>
+    </h1>
+
+    <div class="hero__line">
+      <p class="hero__copy" data-hero-copy>
+        Ninth grade. I build AI systems that hold up under their own weight, and I'm
+        early enough that the rest of this page is still mostly empty.
+      </p>
+      <p class="hero__cue"><i aria-hidden="true"></i>Scroll</p>
+    </div>
+  </div>
+
+  <div class="hero__prox" aria-hidden="true">
+    <VariableProximity
+      client:visible
+      label="Design / Motion / Code"
+      fromFontVariationSettings="'wght' 400"
+      toFontVariationSettings="'wght' 900"
+      fromColor="rgba(241,241,241,0.28)"
+      toColor="#F1F1F1"
+      radius={220}
+      falloff="exponential"
+      smoothing={0.12}
+      className="hero__prox-type"
+      containerRef={null}
+    />
+  </div>
+</section>

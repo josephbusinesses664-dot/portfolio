@@ -1,0 +1,78 @@
+---
+const snippets = [
+  {
+    idx: '01',
+    title: 'Rebuildable index',
+    code: `remember(text, evidence)
+recall(query, { depth: 3 })
+  .map(hit => hit.evidence)
+
+forget(id)      // soft
+restore(id)     // undo
+rebuild_index() // derived only`,
+    note: 'Every index is downstream of the canonical model, so a rebuild is a repair, not a rewrite of the truth.'
+  },
+  {
+    idx: '02',
+    title: 'Deterministic outfit',
+    code: `const fit = harmony(palette)
+  .with(proportions(garment))
+  .score();
+
+return fit[0]; // same input,
+               // same answer`,
+    note: 'Two identical wardrobes give two identical outfits. A model that guesses is not a stylist.'
+  },
+  {
+    idx: '03',
+    title: 'Approval gate',
+    code: `if (action.risk === 'high') {
+  await approve({ action, agent });
+}
+audit.record(action);`,
+    note: 'Agents stop and ask before anything destructive, and the trail is written either way.'
+  },
+  {
+    idx: '04',
+    title: 'Crash-safe packet',
+    code: `packet = compile(goal)
+state = checkpoint(packet)
+
+on crash: state.resume()`,
+    note: 'The executive model plans; the local 30B does the work; the run survives its own hardware.'
+  }
+];
+---
+
+<section class="play" id="play">
+  <div class="play__intro">
+    <p class="play__kicker">04 &nbsp;/&nbsp; Playground</p>
+    <h2 class="play__title">Small things I keep around to stay curious.</h2>
+    <p class="play__note">
+      Move your pointer over the grid. It's a shader, not a video, and it costs
+      nothing when you're not touching it.
+    </p>
+  </div>
+
+  <div class="play__run" data-rail>
+    <div class="play__stage">
+      <div data-pixel-trail aria-hidden="true"></div>
+      <p class="play__stage-label">Pointer field / shader</p>
+    </div>
+
+    <div class="rail">
+      <div class="rail__track" data-rail-track>
+        {
+          snippets.map((snippet) => (
+            <article class="snippet">
+              <span class="snippet__idx">{snippet.idx}</span>
+              <h3 class="snippet__title">{snippet.title}</h3>
+              <pre class="snippet__code">{snippet.code}</pre>
+              <p class="snippet__note">{snippet.note}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

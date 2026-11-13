@@ -4,11 +4,13 @@
   --light: #f1f1f1;
   --white: #ffffff;
 
-  /* Roles, not colours — so a section can invert by flipping these two. */
+  /* Ink is inherited from the theme group, so a scrubbed group colour
+     inverts every descendant at once. */
   --bg: var(--dark);
   --fg: var(--light);
-  --muted: rgba(241, 241, 241, 0.46);
-  --line: rgba(241, 241, 241, 0.14);
+  --muted: color-mix(in oklab, currentColor 46%, transparent);
+  --line: color-mix(in oklab, currentColor 16%, transparent);
+  --accent: #c9b48a;
 
   --display: 'Archivo Variable', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
@@ -22,12 +24,6 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-[data-theme='light'] {
-  --bg: var(--light);
-  --fg: var(--dark);
-  --muted: rgba(22, 22, 22, 0.52);
-  --line: rgba(22, 22, 22, 0.16);
-}
 
 *,
 *::before,
@@ -65,13 +61,16 @@ body {
   overflow-x: clip;
 }
 
-/* The two theme wrapper groups. GSAP scrubs background-color on these. */
+/* The two theme wrapper groups. GSAP scrubs background-color and color on
+   these two elements only; children inherit, so nothing else needs to know. */
 .group {
   background-color: var(--dark);
+  color: var(--light);
 }
 
 .group--light {
   background-color: var(--light);
+  color: var(--dark);
 }
 
 h1,
@@ -132,6 +131,12 @@ svg {
 
 .u-muted {
   color: var(--muted);
+}
+
+.u-rule {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 0;
 }
 
 .wrap {
