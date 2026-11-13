@@ -201,7 +201,11 @@ export const initMotion = () => {
   const run = document.querySelector<HTMLElement>('[data-rail]');
   const railTrack = document.querySelector<HTMLElement>('[data-rail-track]');
   if (run && railTrack) {
-    const distance = () => Math.max(0, railTrack.scrollWidth - window.innerWidth + 48);
+    const distance = () => Math.max(0, railTrack.scrollWidth - window.innerWidth);
+    const measure = () => {
+      run.style.height = `${window.innerHeight + distance()}px`;
+    };
+    measure();
 
     gsap.to(railTrack, {
       x: () => -distance(),
@@ -209,11 +213,14 @@ export const initMotion = () => {
       scrollTrigger: {
         trigger: run,
         start: 'top top',
-        end: () => `+=${window.innerHeight * 2}`,
+        end: () => `+=${Math.max(distance(), 1)}`,
         scrub: true,
         invalidateOnRefresh: true
       }
     });
+
+    ScrollTrigger.addEventListener('refreshInit', measure);
+    window.addEventListener('resize', measure);
   }
 
   /* ---------------- Theme flips ---------------- */

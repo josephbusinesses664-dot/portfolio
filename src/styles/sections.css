@@ -162,6 +162,7 @@
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+  flex-wrap: wrap;
   font-family: var(--mono);
   font-size: var(--ui);
   color: var(--muted);
@@ -358,11 +359,13 @@
 .card {
   position: sticky;
   top: 0;
-  min-height: 100svh;
+  height: 100svh;
+  max-height: 100svh;
   display: grid;
   align-content: center;
-  gap: clamp(1rem, 2.6vh, 1.8rem);
-  padding: clamp(3.5rem, 9vh, 6rem) var(--gutter);
+  gap: clamp(0.65rem, 1.6vh, 1.1rem);
+  padding: clamp(3rem, 8vh, 4.5rem) var(--gutter) clamp(1.5rem, 4vh, 2.4rem);
+  overflow: hidden;
   background: var(--card-bg, var(--dark));
   color: var(--card-fg, var(--light));
   border-top: 1px solid var(--card-line, var(--line));
@@ -399,7 +402,7 @@
 }
 
 .card__title {
-  font-size: clamp(2.1rem, 5.4vw, 4.6rem);
+  font-size: clamp(1.9rem, 4.4vw, 3.6rem);
   font-weight: 400;
   line-height: 0.94;
   letter-spacing: -0.04em;
@@ -410,13 +413,13 @@
   line-height: 1.28;
   font-weight: 400;
   color: color-mix(in oklab, currentColor 82%, transparent);
-  margin-top: 0.7rem;
-  max-width: 30ch;
+  margin-top: 0.5rem;
+  max-width: 32ch;
 }
 
 .card__desc {
-  font-size: clamp(0.95rem, 1.1vw, 1.02rem);
-  line-height: 1.55;
+  font-size: clamp(0.88rem, 1vw, 0.98rem);
+  line-height: 1.5;
   color: color-mix(in oklab, currentColor 72%, transparent);
   max-width: 46ch;
 }
@@ -462,7 +465,8 @@
 .card__media {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 21 / 9;
+  max-height: 26svh;
   overflow: clip;
   border: 1px solid var(--card-line, var(--line));
   background: var(--media-bg, #101010);
@@ -600,6 +604,9 @@
    the horizontal track; .play__run supplies the scroll distance. No pins. */
 .play__run {
   position: relative;
+  /* Set from JS to 100svh + the exact travel distance, so the stage can stay
+     stuck for the whole horizontal run. */
+  height: 200svh;
 }
 
 .play__stage {
@@ -633,7 +640,10 @@
 }
 
 .rail {
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(3.2rem, 8vh, 5rem);
   z-index: 2;
   overflow: clip;
 }
@@ -914,4 +924,23 @@
   --card-muted: rgba(241, 241, 241, 0.46);
   --card-line: rgba(241, 241, 241, 0.16);
   --media-bg: #101010;
+}
+
+/* Pixel field fills the stage; the rail floats above it. */
+.play__field {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.play__field canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__stat {
+  color: color-mix(in oklab, currentColor 66%, transparent);
 }

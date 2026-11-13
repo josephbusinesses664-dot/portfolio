@@ -1,4 +1,5 @@
 ---
+
 const snippets = [
   {
     idx: '01',
@@ -56,22 +57,24 @@ on crash: state.resume()`,
 
   <div class="play__run" data-rail>
     <div class="play__stage">
-      <div data-pixel-trail aria-hidden="true"></div>
+      <div class="play__field" aria-hidden="true">
+        <canvas data-field></canvas>
+      </div>
       <p class="play__stage-label">Pointer field / shader</p>
-    </div>
 
-    <div class="rail">
-      <div class="rail__track" data-rail-track>
-        {
-          snippets.map((snippet) => (
-            <article class="snippet">
-              <span class="snippet__idx">{snippet.idx}</span>
-              <h3 class="snippet__title">{snippet.title}</h3>
-              <pre class="snippet__code">{snippet.code}</pre>
-              <p class="snippet__note">{snippet.note}</p>
-            </article>
-          ))
-        }
+      <div class="rail">
+        <div class="rail__track" data-rail-track>
+          {
+            snippets.map((snippet) => (
+              <article class="snippet">
+                <span class="snippet__idx">{snippet.idx}</span>
+                <h3 class="snippet__title">{snippet.title}</h3>
+                <pre class="snippet__code">{snippet.code}</pre>
+                <p class="snippet__note">{snippet.note}</p>
+              </article>
+            ))
+          }
+        </div>
       </div>
     </div>
   </div>

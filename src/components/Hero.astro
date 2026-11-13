@@ -1,13 +1,16 @@
 ---
 import VariableProximity from '../react/VariableProximity.jsx';
-
-const name = 'Prem Tamanam';
+import CountUp from '../react/CountUp.jsx';
 ---
 
 <section class="hero" id="top">
   <div class="hero__inner">
     <p class="hero__eyebrow">
       <span>Portfolio, 2026</span>
+      <span class="hero__stat">
+        <CountUp client:visible to={4} duration={1.1} trigger="load" />
+        projects, <CountUp client:visible to={2} duration={1.1} trigger="load" /> closed
+      </span>
       <span>San Diego, CA</span>
     </p>
 
